@@ -203,6 +203,10 @@ var TypsescriptSession = /** @class */ (function () {
         var var1 = parm1;
         return var1;
     };
+    TypsescriptSession.prototype.genericReturnType = function (param1) {
+        var var1 = param1;
+        return var1;
+    };
     TypsescriptSession.sVar = 30;
     return TypsescriptSession;
 }());
@@ -222,5 +226,9 @@ obj.arrayDemo();
 console.log("=========Object Demo===============");
 obj.objectDemo();
 console.log("=========Return type Demo===============");
-console.log(obj.returnType("Check"));
+console.log(obj.returnType(10));
+console.log(obj.genericReturnType(10));
+console.log(obj.genericReturnType("Check"));
+console.log(obj.genericReturnType(true));
+console.log(obj.genericReturnType(30.5));
 export {};

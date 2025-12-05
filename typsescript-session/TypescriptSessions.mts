@@ -249,11 +249,15 @@ class TypsescriptSession{
         console.log(employeeOneGeneralInfo)
     }
 
-    public returnType(parm1: number): string{
-        const var1 = parm1.toString()
+    public returnType(parm1: number): number{
+        const var1 = parm1
         return var1
     }
 
+    public genericReturnType<T>(param1: T): T{
+        const var1 = param1
+        return var1
+    }
     
 
 }
@@ -275,3 +279,7 @@ console.log("=========Object Demo===============")
 obj.objectDemo()
 console.log("=========Return type Demo===============")
 console.log(obj.returnType(10))
+console.log(obj.genericReturnType(10))
+console.log(obj.genericReturnType("Check"))
+console.log(obj.genericReturnType(true))
+console.log(obj.genericReturnType(30.5))
