@@ -169,7 +169,8 @@ var TypsescriptSession = /** @class */ (function () {
         var employeeOne = {
             empId: 1234,
             empName: "Playwright",
-            empDept: "IT"
+            empDept: "IT",
+            salary: 30000.69
         };
         var employeeTwo = {
             empId: 1235,
@@ -179,6 +180,28 @@ var TypsescriptSession = /** @class */ (function () {
         };
         console.log(employeeTwo);
         console.log(employeeTwo.empName);
+        employeeOne.Location = "Hyderabad";
+        console.log(employeeOne);
+        var employeeOneCard = {
+            empId: 1234,
+            empName: "Playwright"
+        };
+        var employeeTwoCard = {
+            empId: 1235,
+            empName: "PlaywrightTest",
+            //salary: 30000
+        };
+        console.log(employeeTwoCard);
+        var employeeOneGeneralInfo = {
+            empName: "Playwright",
+            empDept: "HR",
+            //salary: 30000
+        };
+        console.log(employeeOneGeneralInfo);
+    };
+    TypsescriptSession.prototype.returnType = function (parm1) {
+        var var1 = parm1;
+        return var1;
     };
     TypsescriptSession.sVar = 30;
     return TypsescriptSession;
@@ -198,4 +221,6 @@ console.log("=========Arrays===============");
 obj.arrayDemo();
 console.log("=========Object Demo===============");
 obj.objectDemo();
+console.log("=========Return type Demo===============");
+console.log(obj.returnType("Check"));
 export {};

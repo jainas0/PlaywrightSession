@@ -194,13 +194,14 @@ class TypsescriptSession{
             empId: number,
             empName: string,
             empDept: string,
-            salary?: number
+            salary: number
         }
 
-        const employeeOne: employeeInfo = {
+        const employeeOne:employeeInfo = {
             empId: 1234,
             empName: "Playwright",
-            empDept: "IT"
+            empDept: "IT",
+            salary: 30000.69
         }
 
         const employeeTwo: employeeInfo = {
@@ -214,8 +215,46 @@ class TypsescriptSession{
 
         console.log(employeeTwo.empName)
 
-        
+        interface employeeInfo {
+            Location?: string
+        }
+
+        employeeOne.Location = "Hyderabad"
+
+        console.log(employeeOne)
+
+        type employeeCard = Pick<employeeInfo, 'empId' | 'empName'>
+
+        const employeeOneCard: employeeCard = {
+            empId: 1234,
+            empName: "Playwright"
+        }
+
+        const employeeTwoCard: employeeCard = {
+            empId: 1235,
+            empName: "PlaywrightTest",
+            //salary: 30000
+        }
+
+        console.log(employeeTwoCard)
+
+        type employeeGeneralInfo = Omit<employeeInfo, 'empId' | 'salary' | 'Location'>
+
+        const employeeOneGeneralInfo: employeeGeneralInfo = {
+            empName: "Playwright",
+            empDept: "HR",
+            //salary: 30000
+        }
+
+        console.log(employeeOneGeneralInfo)
     }
+
+    public returnType(parm1: number): string{
+        const var1 = parm1.toString()
+        return var1
+    }
+
+    
 
 }
 
@@ -234,3 +273,5 @@ console.log("=========Arrays===============")
 obj.arrayDemo()
 console.log("=========Object Demo===============")
 obj.objectDemo()
+console.log("=========Return type Demo===============")
+console.log(obj.returnType(10))
