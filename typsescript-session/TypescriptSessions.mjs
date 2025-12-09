@@ -199,13 +199,82 @@ var TypsescriptSession = /** @class */ (function () {
         };
         console.log(employeeOneGeneralInfo);
     };
-    TypsescriptSession.prototype.returnType = function (parm1) {
+    TypsescriptSession.prototype.returnType = function (parm1, pram2, param3) {
         var var1 = parm1;
         return var1;
     };
     TypsescriptSession.prototype.genericReturnType = function (param1) {
         var var1 = param1;
         return var1;
+    };
+    TypsescriptSession.prototype.anyReturnType = function (param1) {
+        var var1 = param1;
+        return var1;
+    };
+    TypsescriptSession.prototype.stringDataType = function () {
+        var s1 = "This is a strings in Typescripts";
+        var s2 = "This is another String in Typesscript";
+        var s3 = " ";
+        var s4 = "      This is a string          with spaces         ";
+        console.log(s1);
+        console.log(s1.charAt(3)); //s   string
+        console.log(s1.concat(s2)); // string  This is a string in TypescriptThis is another String in Typesscript
+        console.log(s1.concat(s3, s2));
+        console.log(s1.concat(s3).concat(s2));
+        console.log(s1.concat(" " + s2));
+        console.log(s1 + " ".concat(s2));
+        console.log(s1 + " " + s2);
+        console.log(s1 + s3 + s2);
+        //console.log(s1.indexOf('s'))   //i will get the index of 1st 's'
+        //console.log(s1.indexOf('s', s1.indexOf('s')+1))   //i will get the index of 2nd 's'
+        console.log(s1.indexOf('s', s1.indexOf('s', s1.indexOf('s', s1.indexOf('s') + 1) + 1) + 1)); //i will get the index of 3rd 's'
+        //console.log(s1.indexOf('s', 15))  //i will get the index of 4th 's'
+        console.log(s1.lastIndexOf('s'));
+        console.log(s1.length);
+        console.log(s1.repeat(3));
+        console.log(s1.replace("is", "Z"));
+        console.log(s1.slice(3, 16));
+        console.log(s1.split("is"));
+        console.log(s1.substring(3, 16));
+        console.log(s1.toLowerCase());
+        console.log(s1.toUpperCase());
+        console.log(s4);
+        console.log(s4.trim());
+        console.log(s4.trimStart());
+        console.log(s4.trimEnd());
+        var val = 1234;
+        console.log('This is the value of string val: `${val}`');
+        //You order is placed successfully. Your order number is AMZ435324534 for traking
+    };
+    TypsescriptSession.prototype.mappedRemapping = function () {
+        var employeeOne = {
+            //getEmpId: () => 1234,
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: "Hyderabad"
+        };
+        console.log(employeeOne);
+        var employeeRemapped = {
+            getEmpId: function () { return 1235; },
+            getEmpName: function () { return "Typescript"; },
+            getEmpLocation: function () { return "Mumbai"; }
+        };
+        console.log(employeeRemapped);
+    };
+    TypsescriptSession.prototype.mappedPromise = function () {
+        var employeeOne = {
+            //getEmpId: () => 1234,
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: "Hyderabad"
+        };
+        console.log(employeeOne);
+        var promisedEmpoyeeInfo = {
+            empId: Promise.resolve(1234),
+            empName: Promise.resolve("Typescript"),
+            empLocation: Promise.resolve("Banglore")
+        };
+        console.log(promisedEmpoyeeInfo);
     };
     TypsescriptSession.sVar = 30;
     return TypsescriptSession;
@@ -226,9 +295,21 @@ obj.arrayDemo();
 console.log("=========Object Demo===============");
 obj.objectDemo();
 console.log("=========Return type Demo===============");
-console.log(obj.returnType(10));
+console.log(obj.returnType(10, "Check", true));
+console.log("=========Generic Return type Demo===============");
 console.log(obj.genericReturnType(10));
 console.log(obj.genericReturnType("Check"));
 console.log(obj.genericReturnType(true));
 console.log(obj.genericReturnType(30.5));
+console.log("=========Return type using Any===============");
+console.log(obj.anyReturnType(10));
+console.log(obj.anyReturnType("Check"));
+console.log(obj.anyReturnType(true));
+console.log(obj.anyReturnType(30.5));
+console.log("=========Strings===============");
+obj.stringDataType();
+console.log("=========Remapping functionality Demo===============");
+obj.mappedRemapping();
+console.log("=========Promise functionality Demo===============");
+obj.mappedPromise();
 export {};
