@@ -1,3 +1,4 @@
+//import * as z from "zod"
 var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -243,7 +244,7 @@ var TypsescriptSession = /** @class */ (function () {
         console.log(s4.trimStart());
         console.log(s4.trimEnd());
         var val = 1234;
-        console.log('This is the value of string val: `${val}`');
+        console.log("This is the value of string val: ".concat(val));
         //You order is placed successfully. Your order number is AMZ435324534 for traking
     };
     TypsescriptSession.prototype.mappedRemapping = function () {
@@ -275,6 +276,129 @@ var TypsescriptSession = /** @class */ (function () {
             empLocation: Promise.resolve("Banglore")
         };
         console.log(promisedEmpoyeeInfo);
+    };
+    TypsescriptSession.prototype.optionalMapping = function () {
+        var employeeOne = {
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: "Hyderabad"
+        };
+        console.log(employeeOne);
+        /*
+                type optionalEmployee {
+                    empId?: number,
+                    empName?: string,
+                    empLocation?: string
+                }
+        */
+        var optionalEmployeeOne = {
+            empId: 1235
+        };
+        console.log(optionalEmployeeOne);
+        var optionalEmployeeTwo = {
+            empName: "Typescript"
+        };
+        console.log(optionalEmployeeTwo);
+    };
+    TypsescriptSession.prototype.conditionalMapping = function () {
+        var employeeOne = {
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: "Hyderabad"
+        };
+        console.log(employeeOne);
+        var employeeTwo = {
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: "Hyderabad"
+        };
+        var conditionalEmpOne = {
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: null
+        };
+    };
+    TypsescriptSession.prototype.zodSchemaDemo = function () {
+        /* const employeeInfoZod = z.object{
+             empId: z.
+         }*/
+    };
+    TypsescriptSession.prototype.tupleDemo = function () {
+        var t1 = [1234, "Playwright", true];
+        var t2 = [1235, "Typescript", false];
+        console.log(t1);
+        console.log(t1.concat(t2));
+        // console.log(t1.fill(3))
+        console.log(t1.join(", ").charAt(6));
+        console.log(t1.findIndex(function (item) {
+            return typeof item === 'boolean' && item === true;
+        }));
+        console.log(t1.find(function (item) {
+            return typeof item === 'boolean' && item === true;
+        }));
+        var value1 = t1.findIndex(function (item) {
+            return typeof item === 'boolean' && item === true;
+        });
+        console.log(value1);
+        var value2 = t1.find(function (item) {
+            return typeof item === 'boolean' && item === true;
+        });
+        console.log(value2);
+        console.log(t1.length);
+        console.log(t1.pop());
+        console.log(t1);
+        //console.log(t1.)
+    };
+    TypsescriptSession.prototype.setDemo = function () {
+        var set1 = new Set();
+        var set2 = ([1235, "Typescript", true]);
+        set1.add(1234);
+        set1.add("Playwright");
+        set1.add(false);
+        set1.add(10.30);
+        set1.add(false);
+        set1.add(10.30);
+        console.log(set1);
+        console.log(set1.delete(1234));
+        console.log(set1);
+        console.log(set1.forEach(function (value) { return console.log(value); }));
+        console.log(set1.has("Playwright"));
+        console.log(Array.from(set1.keys()));
+        console.log(set1.values());
+        console.log(set1.entries());
+        console.log(set1.size);
+        //console.log(set1.)
+        var weakSet = new WeakSet();
+        //weakSet.add(10)
+    };
+    TypsescriptSession.prototype.MapsDemo = function () {
+        var mapVal = new Map();
+        var obj = {
+            empId: 1234,
+            empName: "Playwright"
+        };
+        mapVal.set(1234, "Playwright");
+        mapVal.set("Typescript", "Playwright");
+        mapVal.set(true, 2345);
+        mapVal.set(1235, "Javascript");
+        mapVal.set(obj, "String Object");
+        console.log(mapVal);
+        console.log(mapVal.delete(obj));
+        console.log(mapVal);
+        var allKeys = mapVal.keys();
+        console.log(mapVal.forEach(function (key, value) { return console.log("Key values are ".concat(mapVal.get(key), " and the value is ").concat(mapVal.get(value))); }));
+        console.log(mapVal.size);
+        console.log(mapVal.keys());
+        console.log(mapVal.values());
+        //console.log(mapVal.)
+        var weakMap = new WeakMap();
+        //weakMap.
+    };
+    TypsescriptSession.prototype.m1 = function (value) {
+        console.log("Value is " + value.toFixed(2));
+    };
+    TypsescriptSession.prototype.m2 = function () {
+        this.m1(10);
     };
     TypsescriptSession.sVar = 30;
     return TypsescriptSession;
@@ -312,4 +436,21 @@ console.log("=========Remapping functionality Demo===============");
 obj.mappedRemapping();
 console.log("=========Promise functionality Demo===============");
 obj.mappedPromise();
+console.log("=========Zod schemas functionality Demo===============");
+console.log("=========tuples functionality Demo===============");
+obj.tupleDemo();
+console.log("=========Set functionality Demo===============");
+obj.setDemo();
+console.log("=========Map functionality Demo===============");
+obj.MapsDemo();
+console.log("=========Exceptions functionality Demo===============");
+obj.m2();
+var sampleObject = { price: 50 };
+//obj.m1(sampleObject)
+try {
+    obj.m1(sampleObject);
+}
+catch (e) {
+    console.log(e.message);
+}
 export {};

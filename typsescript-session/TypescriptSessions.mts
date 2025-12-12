@@ -1,3 +1,4 @@
+//import * as z from "zod"
 
 class TypsescriptSession{
 
@@ -371,22 +372,206 @@ class TypsescriptSession{
         }
 
         console.log(promisedEmpoyeeInfo)
+    }
+
+    public optionalMapping(){
+        interface employeeInfo {
+            empId: number,
+            empName: string,
+            empLocation: string
+        }
+
+        const employeeOne: employeeInfo = {
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: "Hyderabad"
+        }
+        console.log(employeeOne)
+
+        type optionalEmployee = {
+            [P in keyof employeeInfo]?: employeeInfo[P]
+        }
+/*
+        type optionalEmployee {
+            empId?: number,
+            empName?: string,
+            empLocation?: string
+        }
+*/
+        const optionalEmployeeOne: optionalEmployee = {
+            empId: 1235
+        }
+
+        console.log(optionalEmployeeOne)
+
+        const optionalEmployeeTwo: optionalEmployee = {
+            empName: "Typescript"
+        }
+
+        console.log(optionalEmployeeTwo)
+    }
+
+    public conditionalMapping(){
+        interface employeeInfo {
+            empId: number,
+            empName: string,
+            empLocation: string
+        }
+
+        const employeeOne: employeeInfo = {
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: "Hyderabad"
+        }
+        console.log(employeeOne)
+
+        const employeeTwo: employeeInfo = {
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: "Hyderabad"
+        }
+
+        type conditionalEmp = {
+            [P in keyof employeeInfo]: employeeInfo[P] extends string
+            ? employeeInfo[P] | null
+            : employeeInfo[P]
+        }
+
+        const conditionalEmpOne: conditionalEmp = {
+            empId: 1234,
+            empName: "Playwright",
+            empLocation: null
+        }
+    }
+
+    public zodSchemaDemo(){
+        interface employeeInfo {
+            empId: number,
+            empName: string,
+            empLocation: string
+        }
 
 
+       /* const employeeInfoZod = z.object{
+            empId: z.
+        }*/
+    }
 
+    public tupleDemo(){
 
+        type tupleType = [number, string, boolean]
 
+        const t1: tupleType = [1234, "Playwright", true]
+        const t2: tupleType = [1235, "Typescript", false]
 
+        console.log(t1)
 
+        console.log(t1.concat(t2))
 
+       // console.log(t1.fill(3))
 
+       console.log(t1.join(", ").charAt(6))
 
+       console.log(t1.findIndex((item) => {
+        return typeof item === 'boolean' && item === true
+       }))
 
+       console.log(t1.find((item) => {
+        return typeof item === 'boolean' && item === true
+       }))
 
+       const value1 = t1.findIndex((item) => 
+        typeof item === 'boolean' && item === true
+       )
+       console.log(value1)
 
+       const value2 = t1.find((item) => 
+        typeof item === 'boolean' && item === true
+       )
+       console.log(value2)
+
+       console.log(t1.length)
+
+       console.log(t1.pop())
+       console.log(t1)
+       
+       //console.log(t1.)
+    }
+
+    public setDemo(){
+        const set1 = new Set()
+        const set2 = ([ 1235, "Typescript", true ])
+
+        set1.add(1234)
+        set1.add("Playwright")
+        set1.add(false)
+        set1.add(10.30)
+        set1.add(false)
+        set1.add(10.30)
+
+        console.log(set1)
+
+        console.log(set1.delete(1234))
+        console.log(set1)
+
+        console.log(set1.forEach((value)=>console.log(value)))
+
+        console.log(set1.has("Playwright"))
+
+        console.log(Array.from(set1.keys()))
+        console.log(set1.values())
+
+        console.log(set1.entries())
+
+        console.log(set1.size)
+
+        //console.log(set1.)
+
+        const weakSet = new WeakSet()
+        //weakSet.add(10)
+    }
+
+    public MapsDemo(){
+        const mapVal = new Map()
+
+        const obj = {
+            empId: 1234,
+            empName: "Playwright"
+        }
+
+        mapVal.set(1234, "Playwright")
+        mapVal.set("Typescript", "Playwright")
+        mapVal.set(true, 2345)
+        mapVal.set(1235, "Javascript")
+        mapVal.set(obj, "String Object")
+
+        console.log(mapVal)
+
+        console.log(mapVal.delete(obj))
+        console.log(mapVal)
+
+        const allKeys = mapVal.keys()
+        console.log(mapVal.forEach((key, value)=> console.log(`Key values are ${mapVal.get(key)} and the value is ${mapVal.get(value)}`)))
+
+        console.log(mapVal.size)
+
+        console.log(mapVal.keys())
+        console.log(mapVal.values())
+
+        //console.log(mapVal.)
+
+        const weakMap = new WeakMap()
+        //weakMap.
 
     }
 
+    public m1(value: number): void{
+        console.log("Value is "+value.toFixed(2))
+    }
+
+    public m2(): void{
+        this.m1(10)
+    }
 }
 
 const obj = new TypsescriptSession()
@@ -422,3 +607,20 @@ console.log("=========Remapping functionality Demo===============")
 obj.mappedRemapping()
 console.log("=========Promise functionality Demo===============")
 obj.mappedPromise()
+console.log("=========Zod schemas functionality Demo===============")
+console.log("=========tuples functionality Demo===============")
+obj.tupleDemo()
+console.log("=========Set functionality Demo===============")
+obj.setDemo()
+console.log("=========Map functionality Demo===============")
+obj.MapsDemo()
+console.log("=========Exceptions functionality Demo===============")
+obj.m2()
+
+const sampleObject: any = {price: 50}
+//obj.m1(sampleObject)
+try{
+    obj.m1(sampleObject)
+}catch(e){
+    console.log((e as Error).message)
+}
