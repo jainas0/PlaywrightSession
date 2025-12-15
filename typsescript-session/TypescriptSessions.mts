@@ -624,3 +624,84 @@ try{
 }catch(e){
     console.log((e as Error).message)
 }
+
+console.log("========= Starting of OOPs concepts ===============")
+
+class A1 {
+    public a1(){
+        console.log("This is in class A1 and function a1")
+    }
+}
+
+class A2 extends A1{
+    public a2(){
+        console.log("This is in class A2 and function a2")
+        this.a1()
+    }
+}
+
+class A3 extends A2 {
+    public a3(){
+        console.log("This is in class A3 and function a3")
+        this.a1()
+        this.a2()
+    }
+}
+
+class A4 extends A2{
+    public a4(){
+        console.log("This is in class A4 and function a4")
+        this.a1()
+    }
+}
+
+
+const obj1 = new A2()
+obj1.a2()
+
+console.log("============ Polymorphisum - Overriding =============")
+
+class B1{
+    public print(): string{
+        return "From class B1"
+    }
+}
+
+class B2 extends B1{
+
+    public print(): string{
+        return "From class B2"
+    }
+
+    public callingFunc(): string {
+        console.log(this.print())
+        return "From calss B2"
+    }
+}
+
+const obj2 = new B2()
+console.log(obj2.callingFunc())
+
+
+
+/*
+
+Polymorphisum
+    Overloading
+        generic
+        subtype
+    Overriding
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+

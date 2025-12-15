@@ -1,4 +1,19 @@
 //import * as z from "zod"
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
         if (ar || !(i in from)) {
@@ -453,4 +468,84 @@ try {
 catch (e) {
     console.log(e.message);
 }
+console.log("========= Starting of OOPs concepts ===============");
+var A1 = /** @class */ (function () {
+    function A1() {
+    }
+    A1.prototype.a1 = function () {
+        console.log("This is in class A1 and function a1");
+    };
+    return A1;
+}());
+var A2 = /** @class */ (function (_super) {
+    __extends(A2, _super);
+    function A2() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    A2.prototype.a2 = function () {
+        console.log("This is in class A2 and function a2");
+        this.a1();
+    };
+    return A2;
+}(A1));
+var A3 = /** @class */ (function (_super) {
+    __extends(A3, _super);
+    function A3() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    A3.prototype.a3 = function () {
+        console.log("This is in class A3 and function a3");
+        this.a1();
+        this.a2();
+    };
+    return A3;
+}(A2));
+var A4 = /** @class */ (function (_super) {
+    __extends(A4, _super);
+    function A4() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    A4.prototype.a4 = function () {
+        console.log("This is in class A4 and function a4");
+        this.a1();
+    };
+    return A4;
+}(A2));
+var obj1 = new A2();
+obj1.a2();
+console.log("============ Polymorphisum - Overriding =============");
+var B1 = /** @class */ (function () {
+    function B1() {
+    }
+    B1.prototype.print = function () {
+        return "From class B1";
+    };
+    return B1;
+}());
+var B2 = /** @class */ (function (_super) {
+    __extends(B2, _super);
+    function B2() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    B2.prototype.print = function () {
+        return "From class B2";
+    };
+    B2.prototype.callingFunc = function () {
+        console.log(this.print());
+        return "From calss B2";
+    };
+    return B2;
+}(B1));
+var obj2 = new B2();
+console.log(obj2.callingFunc());
 export {};
+/*
+
+Polymorphisum
+    Overloading
+        generic
+        subtype
+    Overriding
+
+
+*/
