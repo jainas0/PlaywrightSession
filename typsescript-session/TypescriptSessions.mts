@@ -682,12 +682,165 @@ class B2 extends B1{
 const obj2 = new B2()
 console.log(obj2.callingFunc())
 
+console.log("============ Polymorphisum - Overloading (generics)=============")
+
+class C1{
+    //public add(val1: number): number
+    public add(val1: number, val2: string): string
+    public add(val1: number, val2: number): number
+    public add(val1: string,  val2: string): string
+    public add(val1: string, val2: number): string
+
+    public add(val1: number | string | boolean, val2: number | string | boolean){
+        if( typeof val1 === 'number' && typeof val2 === 'number' ){
+            return val1+val2
+        }
+        return String(val1)+String(val2)
+    }
+
+    public wrapInArray<T>(item: T): T[]{
+        return [item]
+    }
+
+   // public returnDataType<T>(val3: T): T[]{
+       // return typeof [val3]
+   // }
+
+}
+
+const obj3 = new C1()
+console.log(obj3.add(10, 20))
+console.log(obj3.add(10, "check"))
+console.log(obj3.add("check", 30))
+console.log(obj3.add("test", "check"))
+
+console.log("============ Polymorphisum - Overloading (Subtype)=============")
+
+console.log(obj3.wrapInArray(45))
+console.log(obj3.wrapInArray("Playwright"))
+console.log(obj3.wrapInArray(true))
+
+interface I1 extends I2, I3{
+    iLogin(): string
+    iLogout(): string
+    iLike(): string
+    iShare(): string
+}
+
+interface I2{
+    xLogin(): string
+    xLogout(): string
+    xLike(): string
+    xShare(): string
+}
+
+interface I3{
+    fbLogin(): string
+    fbLogout(): string
+    fbLike(): string
+    fbShare(): string
+}
+
+abstract class ImplI1 implements I1{
+    public iLogin(): string{
+        return "check"
+    }
+
+    iLike(): string{
+        return "check"
+    }
+
+    iShare(): string{
+        return "check"
+    }
+
+    public abstract xLogin(): string
+    public abstract xLogout(): string
+    public abstract xLike(): string
+    public abstract xShare(): string
+    public abstract iLogout(): string
+    public abstract fbLogin(): string
+    public abstract fbLogout(): string
+    public abstract fbLike(): string
+    public abstract fbShare(): string
+}
+
+abstract class ImpI1Complete extends ImplI1{
+    public iLogout(): string{
+        return "check"
+    }
+
+    public abstract xLogin(): string
+    public abstract xLogout(): string
+    public abstract xLike(): string
+    public abstract xShare(): string
+    public abstract fbLogin(): string
+    public abstract fbLogout(): string
+    public abstract fbLike(): string
+    public abstract fbShare(): string
+}
+
+
+console.log("============ Encapsulation =============")
+
+class P1{
+    private P1M1(){
+        console.log("In P1M1")
+    }
+
+    protected P1M2(){
+        console.log("In P1M2")
+    }
+
+    public P1M3(){
+        console.log("In P1M3")
+    }
+
+    public callingMethid(){
+        console.log(this.P1M1())
+        console.log(this.P1M2())
+        console.log(this.P1M3())
+    }
+}
+
+class P2 extends P1{
+    public callingMethod2(){
+        console.log(this.P1M2())
+        console.log(this.P1M3())
+    }
+}
+
+const obj5 = new P1()
+obj5.P1M3()
+
+const obj6 = new P2()
+obj5.callingMethid()
+
 
 
 /*
 
+Access identifiers:
+
+public - It can be used anywehre in the project
+protected - It can be used in any class and not externally
+private - It can be used only inside the class
+
+
+
+class extends class
+interface extends interface 
+class implements interface
+
+
+===========================
+
 Polymorphisum
-    Overloading
+    Overloading: A given class cannot have methods with same name but it is possible 
+        if:
+            the number of parameters are different
+            the datatype of parameters are different
+            the order in the data type of parameters are different
         generic
         subtype
     Overriding

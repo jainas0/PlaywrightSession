@@ -538,11 +538,113 @@ var B2 = /** @class */ (function (_super) {
 }(B1));
 var obj2 = new B2();
 console.log(obj2.callingFunc());
+console.log("============ Polymorphisum - Overloading (generics)=============");
+var C1 = /** @class */ (function () {
+    function C1() {
+    }
+    C1.prototype.add = function (val1, val2) {
+        if (typeof val1 === 'number' && typeof val2 === 'number') {
+            return val1 + val2;
+        }
+        return String(val1) + String(val2);
+    };
+    C1.prototype.wrapInArray = function (item) {
+        return [item];
+    };
+    return C1;
+}());
+var obj3 = new C1();
+console.log(obj3.add(10, 20));
+console.log(obj3.add(10, "check"));
+console.log(obj3.add("check", 30));
+console.log(obj3.add("test", "check"));
+console.log("============ Polymorphisum - Overloading (Subtype)=============");
+console.log(obj3.wrapInArray(45));
+console.log(obj3.wrapInArray("Playwright"));
+console.log(obj3.wrapInArray(true));
+var ImplI1 = /** @class */ (function () {
+    function ImplI1() {
+    }
+    ImplI1.prototype.iLogin = function () {
+        return "check";
+    };
+    ImplI1.prototype.iLike = function () {
+        return "check";
+    };
+    ImplI1.prototype.iShare = function () {
+        return "check";
+    };
+    return ImplI1;
+}());
+var ImpI1Complete = /** @class */ (function (_super) {
+    __extends(ImpI1Complete, _super);
+    function ImpI1Complete() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ImpI1Complete.prototype.iLogout = function () {
+        return "check";
+    };
+    return ImpI1Complete;
+}(ImplI1));
+console.log("============ Encapsulation =============");
+var P1 = /** @class */ (function () {
+    function P1() {
+    }
+    P1.prototype.P1M1 = function () {
+        console.log("In P1M1");
+    };
+    P1.prototype.P1M2 = function () {
+        console.log("In P1M2");
+    };
+    P1.prototype.P1M3 = function () {
+        console.log("In P1M3");
+    };
+    P1.prototype.callingMethid = function () {
+        console.log(this.P1M1());
+        console.log(this.P1M2());
+        console.log(this.P1M3());
+    };
+    return P1;
+}());
+var P2 = /** @class */ (function (_super) {
+    __extends(P2, _super);
+    function P2() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    P2.prototype.callingMethod2 = function () {
+        console.log(this.P1M2());
+        console.log(this.P1M3());
+    };
+    return P2;
+}(P1));
+var obj5 = new P1();
+obj5.P1M3();
+var obj6 = new P2();
+obj5.callingMethid();
 export {};
 /*
 
+Access identifiers:
+
+public - It can be used anywehre in the project
+protected - It can be used in any class and not externally
+private - It can be used only inside the class
+
+
+
+class extends class
+interface extends interface
+class implements interface
+
+
+===========================
+
 Polymorphisum
-    Overloading
+    Overloading: A given class cannot have methods with same name but it is possible
+        if:
+            the number of parameters are different
+            the datatype of parameters are different
+            the order in the data type of parameters are different
         generic
         subtype
     Overriding
