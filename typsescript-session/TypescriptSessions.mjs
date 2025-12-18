@@ -26,6 +26,7 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 var TypsescriptSession = /** @class */ (function () {
     function TypsescriptSession() {
         this.iVar = 20;
+        console.log("This is in constructor");
     }
     TypsescriptSession.prototype.firstFunc = function () {
         console.log("This is a print statement in typescript");

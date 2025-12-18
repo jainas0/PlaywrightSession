@@ -5,6 +5,10 @@ class TypsescriptSession{
     iVar = 20
     static sVar = 30
 
+    constructor(){
+        console.log("This is in constructor")
+    }
+
     public firstFunc(){
         console.log("This is a print statement in typescript")
         console.log(this.iVar)
