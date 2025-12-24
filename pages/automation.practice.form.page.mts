@@ -40,7 +40,11 @@ export class AutomationPracticeFormPage extends PlayWrightUtils{
         this.submitEle = page.getByRole('button', {name: 'Submit'})
     }
 
-    public async enterFirstNameEle(firstNameValue: string){
+    public async navigate(){
+        await this.page.goto(this.pageName, { waitUntil: 'domcontentloaded'})
+    }
+
+    public async enterFirstName(firstNameValue: string){
         await this.fNameEle.fill(firstNameValue)
     }
 
@@ -58,18 +62,6 @@ export class AutomationPracticeFormPage extends PlayWrightUtils{
 
     public async enterMobileNumber(mobileNumberValue: string){
         await this.MobileNumberEle.fill(mobileNumberValue)
-    }
-
-    public async clickDOB(){
-        await this.DOBEle.click()
-    }
-
-    public async selectYear(yearValue: number){
-        await this.yearEle.selectOption(yearValue.toString())
-    }
-
-    public async selectMonth(monthVal: string){
-        await this.monthEle.selectOption(monthVal)
     }
 
     public async selectAllHobbies(){
@@ -96,6 +88,10 @@ export class AutomationPracticeFormPage extends PlayWrightUtils{
 
     public async clickSubmit(){
         await this.subjectEle.click()
+    }
+
+    public async selectDOB(yearValue: number, monthValue: string, dateValue: number){
+        await this.datePicker(this.DOBEle, this.yearEle, yearValue, this.monthEle, monthValue, dateValue)
     }
 }       
 

@@ -28,7 +28,7 @@ export default defineConfig({
     headless: false,
     navigationTimeout: 60000,
     launchOptions: {
-      slowMo: 1000, 
+      slowMo: 2000, 
     },
   
   },
