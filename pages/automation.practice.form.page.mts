@@ -32,11 +32,11 @@ export class AutomationPracticeFormPage extends PlayWrightUtils{
         this.yearEle = page.locator('//select[contains(@class, \'_year-select\')]')
         this.monthEle = page.locator('//select[@class=\'react-datepicker__month-select\']')
         this.subjectEle = page.locator('//div[contains(@class, \'subjects-auto-complete__value-container\')]')
-        this.allHobbiesEles = page.locator('//label[contains(@for, \'hobbies-checkbox-\')]').all()
+        this.allHobbiesEles = page.locator('//label[contains(@for, \'hobbies-checkbox-\')]')
         this.chooseBtnEle = page.locator('//label[@for=\'uploadPicture\']')
         this.currentAddressEle = page.getByPlaceholder('Current Address')
-        this.stateEle = page.getByPlaceholder('Select State')
-        this.cityEle = page.getByPlaceholder('Select City')
+        this.stateEle = page.getByText('Select State')
+        this.cityEle = page.getByText('Select City')
         this.submitEle = page.getByRole('button', {name: 'Submit'})
     }
 
@@ -65,7 +65,8 @@ export class AutomationPracticeFormPage extends PlayWrightUtils{
     }
 
     public async selectAllHobbies(){
-        for(const hobbyEle of await this.allHobbiesEles){
+        const allHobbiesEles = this.allHobbiesEles.all()
+        for(const hobbyEle of await allHobbiesEles){
             await hobbyEle.click()
         }
     }
@@ -79,11 +80,11 @@ export class AutomationPracticeFormPage extends PlayWrightUtils{
     }
 
     public async selectState(stateValue: string){
-        await this.stateEle.selectOption(stateValue)
+        await this.selectDivDropDown(this.stateEle, stateValue)
     }
 
     public async selectCity(cityValue: string){
-        await this.cityEle.selectOption(cityValue)
+        await this.selectDivDropDown(this.cityEle, cityValue)
     }
 
     public async clickSubmit(){

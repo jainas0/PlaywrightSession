@@ -16,4 +16,9 @@ export class PlayWrightUtils {
         const dayXpath = `//div[contains(@class, 'react-datepicker__day') and text()='${dateValue}' and not(contains(@class, 'outside-month'))]`
         await this.page.locator(dayXpath).click()
     }
+
+    public async selectDivDropDown(DropdownEle: Locator, DropeDownEleValue: string){
+        await DropdownEle.click()
+        await this.page.getByText((DropeDownEleValue)).click()
+    }
 }
