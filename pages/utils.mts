@@ -19,6 +19,6 @@ export class PlayWrightUtils {
 
     public async selectDivDropDown(DropdownEle: Locator, DropeDownEleValue: string){
         await DropdownEle.click()
-        await this.page.getByText((DropeDownEleValue)).click()
+        await this.page.getByText((DropeDownEleValue), { exact: true }).click()
     }
 }
